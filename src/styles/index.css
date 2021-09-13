@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .col-center {
+    @apply flex flex-col items-center justify-center;
+  }
+  .col-start {
+    @apply flex flex-col items-start;
+  }
+  .row-around {
+    @apply flex flex-row justify-around;
+  }
+  .row-between {
+    @apply flex justify-between items-center;
+  }
+  .row-start {
+    @apply flex justify-start items-center;
+  }
+  .row-center {
+    @apply flex justify-center items-center;
+  }
+  .row-items-center {
+    @apply flex flex-row items-center;
+  }
+  .row-items-start {
+    @apply flex flex-row justify-center items-start;
+  }
+  .trans {
+    @apply transition ease-in-out duration-100;
+  }
+  .col-full {
+    @apply w-full flex flex-col;
+  }
+  .bg-dark {
+    @apply bg-gray-800;
+  }
+  .bg-light {
+    @apply bg-fade;
+  }
+  .text-dark {
+    @apply text-gray-300;
+  }
+  .text-light {
+    @apply text-gray-800;
+  }
+  .border-dark {
+    @apply border-gray-700;
+  }
+  .border-light {
+    @apply border-gray-300;
+  }
+}

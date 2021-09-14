@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import axios from 'axios'
+import { Request } from './request'
 
 export const useService = () => {
   const client = useQueryClient()
@@ -18,7 +18,9 @@ export const useService = () => {
         keepPreviousData,
       } = props
       const asyncGet = async () => {
-        const { data } = await axios.get(url)
+        const { data } = await Request.get(url, {
+          params: { ...(key[1] && { ...key[1] }) },
+        })
         return data
       }
       return useQuery(key, asyncGet, {
@@ -32,23 +34,11 @@ export const useService = () => {
         refetchOnMount: true,
       })
     },
-
-    usePut: (props: IUseService) => {
+    usePost: (props: IUseService) => {
       const { url, onError, onSuccess, onMutate, onSettled, params } = props
-      const asyncPut = async ({ payload }) =>
-        await axios.put(url, payload, { params })
-      return useMutation(asyncPut, {
-        ...(onSuccess && { onSuccess }),
-        ...(onError && { onError }),
-        ...(onMutate && { onMutate }),
-        ...(onSettled && { onSettled }),
-      })
-    },
-
-    usePatch: (props: IUseService) => {
-      const { url, onError, onSuccess, onMutate, onSettled } = props
-      const asyncPatch = async ({ payload }) => await axios.patch(url, payload)
-      return useMutation(asyncPatch, {
+      const asyncPost = async ({ payload }) =>
+        await Request.post(url, payload, { params })
+      return useMutation(asyncPost, {
         ...(onSuccess && { onSuccess }),
         ...(onError && { onError }),
         ...(onMutate && { onMutate }),

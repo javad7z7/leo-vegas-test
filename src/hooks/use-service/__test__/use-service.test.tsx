@@ -39,32 +39,4 @@ describe('Use service', () => {
     await waitFor(() => result.current.isSuccess)
     expect(result.current.data).toBe(MockData)
   })
-  it('Should return proper data on post', async () => {
-    const { result, waitFor } = renderHook(
-      () =>
-        service.current.usePatch({
-          url: 'whatever',
-        }),
-      {
-        wrapper,
-      }
-    )
-    act(() => result.current.mutate({ payload: '' }))
-    await waitFor(() => result.current.isSuccess)
-    expect(result.current.data).toBe('Success patch')
-  })
-  it('Should return proper data on put', async () => {
-    const { result, waitFor } = renderHook(
-      () =>
-        service.current.usePut({
-          url: 'whatever',
-        }),
-      {
-        wrapper,
-      }
-    )
-    act(() => result.current.mutate({ payload: '' }))
-    await waitFor(() => result.current.isSuccess)
-    expect(result.current.data).toBe('Success put')
-  })
 })

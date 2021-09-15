@@ -37,6 +37,7 @@ describe('Use service', () => {
       }
     )
     await waitFor(() => result.current.isSuccess)
+
     expect(result.current.data).toBe(MockData)
   })
 })

@@ -31,14 +31,4 @@ describe('UI Reducer', () => {
     )
     expect(result.current.state.toast.open).toBeTruthy()
   })
-  it('Should toggle dialog', () => {
-    const { result } = renderHook(() => useContext(MockContext), { wrapper })
-    act(() =>
-      result.current.dispatch({
-        type: uiTypes.TOGGLE_DIALOG,
-        payload: { open: true },
-      })
-    )
-    expect(result.current.state.dialog.open).toBeTruthy()
-  })
 })

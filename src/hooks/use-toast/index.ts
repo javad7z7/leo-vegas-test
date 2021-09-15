@@ -1,8 +1,8 @@
-import { useUi } from "hooks";
-import { useCallback, useMemo } from "react";
+import { useUi } from 'hooks/use-ui'
+import { useCallback, useMemo } from 'react'
 
 export const useToast = () => {
-  const { toggleToast, uiState } = useUi();
+  const { toggleToast, uiState } = useUi()
 
   return {
     toast: useMemo(() => uiState.toast, [uiState.toast]),
@@ -10,8 +10,8 @@ export const useToast = () => {
       (description) =>
         toggleToast({
           open: true,
-          type: "error",
-          title: "Error",
+          type: 'error',
+          title: 'Error',
           description,
         }),
       [uiState.toast]
@@ -20,8 +20,8 @@ export const useToast = () => {
       (description) =>
         toggleToast({
           open: true,
-          type: "success",
-          title: "Success",
+          type: 'success',
+          title: 'Success',
           description,
         }),
       [uiState.toast]
@@ -36,5 +36,5 @@ export const useToast = () => {
         }),
       [uiState.toast]
     ),
-  };
-};
+  }
+}

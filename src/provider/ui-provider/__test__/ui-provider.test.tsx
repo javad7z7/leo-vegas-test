@@ -22,14 +22,4 @@ describe('UI Provider', () => {
     )
     expect(result.current.uiState.toast.open).toBeTruthy()
   })
-  it('Should toggle dialog', () => {
-    const { result } = renderHook(() => useContext(UiContext), { wrapper })
-    act(() =>
-      result.current.uiDispatch({
-        type: uiTypes.TOGGLE_DIALOG,
-        payload: { open: true },
-      })
-    )
-    expect(result.current.uiState.dialog.open).toBeTruthy()
-  })
 })

@@ -32,6 +32,7 @@ export const MoviesPagination = ({ totalPage, onPaginate, page }) => {
     return (
       <div className=" w-full flex items-center justify-end">
         <Button
+          id={1}
           type="button"
           onClick={() => onPaginate(1)}
           className={classNames(
@@ -60,6 +61,7 @@ export const MoviesPagination = ({ totalPage, onPaginate, page }) => {
           </Button>
         ))}
         <Button
+          id={totalPage}
           type="button"
           onClick={() => onPaginate(totalPage)}
           className={classNames(

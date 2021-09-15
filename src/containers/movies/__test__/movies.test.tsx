@@ -6,10 +6,9 @@ describe(' Movies', () => {
   it('Should return proper data', async () => {
     render(<MoviesContainer />, { wrapper })
     const cardBody = screen.getAllByTestId('card-body')
-    const loadingWrapper = screen.queryByTestId('movies-wrapper-loading')
-    const moviesWrapper = screen.queryByTestId('movies-wrapper')
     expect(cardBody.length).toBe(10)
-    await waitFor(() => expect(loadingWrapper).not.toBeInTheDocument())
+    await waitFor(() => cardBody.length !== 10)
+    const moviesWrapper = screen.getByTestId('movies-wrapper')
     expect(moviesWrapper).toBeVisible()
   })
   // it('Should paginate properly', async () => {

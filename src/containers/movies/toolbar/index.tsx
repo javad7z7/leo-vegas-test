@@ -8,7 +8,7 @@ export const MoviesToolbar = ({
   favourites,
   query,
 }) => (
-  <div className="w-full flex flex-col md:flex-row md:items-center space-y-8 md:space-y-0 items-center justify-between px-10 md:px-0">
+  <div className="w-full flex flex-col md:flex-row md:items-center space-y-8 md:space-y-0 items-center justify-between px-6 md:px-0">
     <div className="flex items-center space-x-8">
       <Button
         onClick={() => toggleFavourite(false)}

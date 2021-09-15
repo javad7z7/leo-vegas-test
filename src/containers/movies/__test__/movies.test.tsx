@@ -1,17 +1,17 @@
 import { render, waitFor, screen, act } from '@testing-library/react'
 import { wrapper } from 'tests'
-import { ProductsList } from '..'
+import { MoviesContainer } from '..'
 
 describe(' Product list', () => {
   it('Should return proper data', async () => {
-    render(<ProductsList />, { wrapper })
+    render(<MoviesContainer />, { wrapper })
     const skeleton = screen.queryByText(/loading/i)
     expect(skeleton).toBeVisible()
     await waitFor(() => !skeleton)
     expect(screen.getByText(/Beans - Fava Fresh/i)).toBeVisible()
   })
   it('Should paginate properly', async () => {
-    render(<ProductsList />, { wrapper })
+    render(<MoviesContainer />, { wrapper })
     const skeleton = screen.queryByText(/loading/i)
     expect(skeleton).toBeVisible()
     await waitFor(() => !skeleton)

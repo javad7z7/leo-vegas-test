@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useService } from 'hooks/use-service'
 
 export const useMovies = () => {
@@ -18,6 +18,17 @@ export const useMovies = () => {
     onFocus: false,
     keepPreviousData: true,
   })
+
+  useEffect(() => {
+    setFavourites((prev) => ({
+      ...prev,
+      list: JSON.parse(localStorage.getItem('favourites')) || [],
+    }))
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('favourites', JSON.stringify(favourites.list))
+  }, [favourites.list])
 
   return {
     isSuccess,

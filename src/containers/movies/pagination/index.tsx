@@ -35,7 +35,7 @@ export const MoviesPagination = ({ totalPage, onPaginate, page }) => {
           type="button"
           onClick={() => onPaginate(1)}
           className={classNames(
-            'w-8 h-8  disabled:opacity-30 mr-2',
+            'w-8 h-8  disabled:opacity-30 mr-2 text-sm',
             page === 1
               ? 'bg-secondary text-white'
               : ' bg-gray-500 text-gray-200'
@@ -50,7 +50,7 @@ export const MoviesPagination = ({ totalPage, onPaginate, page }) => {
             key={index}
             onClick={() => onPaginate(item + 1)}
             className={classNames(
-              'w-8 h-8  mr-2 disabled:opacity-30',
+              'w-8 h-8  mr-2 disabled:opacity-30 text-sm',
               page === item + 1
                 ? 'bg-secondary text-white'
                 : ' bg-gray-500 text-gray-200'
@@ -63,7 +63,7 @@ export const MoviesPagination = ({ totalPage, onPaginate, page }) => {
           type="button"
           onClick={() => onPaginate(totalPage)}
           className={classNames(
-            'w-8 h-8  disabled:opacity-30',
+            'w-8 h-8  disabled:opacity-30 text-sm',
             page === totalPage
               ? 'bg-secondary text-white'
               : ' bg-gray-500 text-gray-200'

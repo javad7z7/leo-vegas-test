@@ -1,6 +1,6 @@
 import { LoaidngBounce } from 'components/loading'
 
-const Skeleton = () => {
+const Skeleton = (): JSX.Element => {
   return (
     <div className="fixed inset-0 w-full h-full flex justify-center items-center pt-64">
       <LoaidngBounce size="large" />

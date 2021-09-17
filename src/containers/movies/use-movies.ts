@@ -1,18 +1,15 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useContext, useMemo } from 'react'
 import { useService } from 'hooks/use-service'
+import { MovieContext } from 'provider/movie-provider'
+import { movieTypes } from 'provider/movie-provider/types'
 
 export const useMovies = () => {
   const { useGet } = useService()
 
-  const [favourites, setFavourites] = useState({ list: [], isOpen: false })
-
-  const [watchLater, setWatchLater] = useState({ list: [], isOpen: false })
-
-  const [params, setParams] = useState({
-    apiKey: '871447a7305166c3fa23cfc1d253c71e',
-    page: 1,
-    query: 'a',
-  })
+  const {
+    state: { favourites, watchLater, params },
+    dispatch,
+  } = useContext(MovieContext)
 
   const { data, isLoading, isFetching, isSuccess } = useGet({
     key: ['MOVIE_LIST', params],
@@ -20,17 +17,6 @@ export const useMovies = () => {
     onFocus: false,
     keepPreviousData: true,
   })
-
-  useEffect(() => {
-    setFavourites((prev) => ({
-      ...prev,
-      list: JSON.parse(localStorage.getItem('favourites')) || [],
-    }))
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('favourites', JSON.stringify(favourites.list))
-  }, [favourites.list])
 
   return {
     isSuccess,
@@ -52,48 +38,42 @@ export const useMovies = () => {
       [data, favourites, watchLater]
     ),
     onSearch: useCallback(
-      (e) => setParams((prev) => ({ ...prev, query: e.target.value || 'a' })),
+      (e) =>
+        dispatch({
+          type: movieTypes.SET_QUERY,
+          payload: e.target.value || 'a',
+        }),
       [params.query]
     ),
     onPaginate: useCallback(
-      (page) => setParams((prev) => ({ ...prev, page })),
+      (payload) =>
+        dispatch({
+          type: movieTypes.SET_PAGE,
+          payload,
+        }),
       [params.page]
     ),
     onFavourite: useCallback(
       (movie) => {
-        const exist = favourites.list.some((item) => item.id === movie.id)
-        if (exist)
-          setFavourites((prev) => ({
-            ...prev,
-            list: prev.list.filter((item) => item.id !== movie.id),
-          }))
-        else setFavourites((prev) => ({ ...prev, list: [...prev.list, movie] }))
+        dispatch({ type: movieTypes.SET_FAVOURITES, payload: movie })
       },
       [favourites.list]
     ),
     toggleFavourite: useCallback(
       (payload) => {
-        setFavourites((prev) => ({ ...prev, isOpen: payload }))
-        setWatchLater((prev) => ({ ...prev, isOpen: false }))
+        dispatch({ type: movieTypes.TOGGLE_FAVOURITES, payload })
       },
       [favourites.isOpen]
     ),
     onWatchLater: useCallback(
       (movie) => {
-        const exist = watchLater.list.some((item) => item.id === movie.id)
-        if (exist)
-          setWatchLater((prev) => ({
-            ...prev,
-            list: prev.list.filter((item) => item.id !== movie.id),
-          }))
-        else setWatchLater((prev) => ({ ...prev, list: [...prev.list, movie] }))
+        dispatch({ type: movieTypes.SET_WATCH_LATER, payload: movie })
       },
       [watchLater.list]
     ),
     toggleWatchLater: useCallback(
       (payload) => {
-        setWatchLater((prev) => ({ ...prev, isOpen: payload }))
-        setFavourites((prev) => ({ ...prev, isOpen: false }))
+        dispatch({ type: movieTypes.TOGGLE_WATCH_LATER, payload })
       },
       [watchLater.isOpen]
     ),

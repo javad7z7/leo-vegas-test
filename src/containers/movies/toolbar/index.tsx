@@ -11,11 +11,11 @@ export const MoviesToolbar = ({
   toggleWatchLater,
 }) => (
   <div className="w-full flex flex-col md:flex-row md:items-center space-y-8 md:space-y-0 items-center justify-between px-6 md:px-0">
-    <div className="flex items-center space-x-8">
+    <div className="flex flex-col md:flex-row items-center space-y-3 md:space-x-8 md:space-y-0">
       <Button
         onClick={() => toggleFavourite(false)}
         className={classNames(
-          'text-3xl cursor-pointer ',
+          'md:text-3xl cursor-pointer ',
           !favourites.isOpen && !watchLater.isOpen
             ? 'text-blue-500  '
             : 'text-gray-300  '
@@ -26,7 +26,7 @@ export const MoviesToolbar = ({
       <Button
         onClick={() => toggleFavourite(true)}
         className={classNames(
-          'text-3xl cursor-pointer ',
+          'md:text-3xl cursor-pointer ',
           favourites.isOpen ? 'text-blue-500  ' : 'text-gray-300  '
         )}
       >
@@ -35,7 +35,7 @@ export const MoviesToolbar = ({
       <Button
         onClick={() => toggleWatchLater(true)}
         className={classNames(
-          'text-3xl cursor-pointer ',
+          'md:text-3xl cursor-pointer ',
           watchLater.isOpen ? 'text-blue-500  ' : 'text-gray-300  '
         )}
       >

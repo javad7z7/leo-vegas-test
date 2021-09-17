@@ -12,7 +12,7 @@ export const CardImageAction: FC<ICardImage> = ({
   isWatchLater,
   onWatchLater,
 }): JSX.Element => (
-  <div className=" flex-col space-y-3 absolute top-2 right-2 hidden group-hover:flex">
+  <div className="flex flex-col space-y-3 absolute top-2 right-2">
     <Button
       onClick={() => onFavourite(item)}
       icon

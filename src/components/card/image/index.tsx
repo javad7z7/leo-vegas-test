@@ -9,31 +9,35 @@ export const CardImage: FC<ICardImage> = ({
   isFavourite,
   onWatchLater,
   isWatchLater,
-}): JSX.Element =>
-  isLoading ? (
-    <div
-      className="w-full rounded h-[250px]  bg-gray-400 animate-pulse"
-      data-testid="card-image"
-    />
-  ) : src ? (
-    <div
-      className="w-full h-[250px] relative z-[10] group"
-      data-testid="card-image"
-    >
-      <img
-        className="w-full rounded h-[250px] object-cover object-top"
-        src={`https://image.tmdb.org/t/p/w500${src}`}
-        alt="image"
+}): JSX.Element => {
+  if (isLoading)
+    return (
+      <div
+        className="w-full rounded h-[250px]  bg-gray-400 animate-pulse"
+        data-testid="card-image"
       />
-      <CardImageAction
-        item={item}
-        onFavourite={onFavourite}
-        isFavourite={isFavourite}
-        onWatchLater={onWatchLater}
-        isWatchLater={isWatchLater}
-      />
-    </div>
-  ) : (
+    )
+  else if (src)
+    return (
+      <div
+        className="w-full h-[250px] relative z-[10] group"
+        data-testid="card-image"
+      >
+        <img
+          className="w-full rounded h-[250px] object-cover object-top"
+          src={`https://image.tmdb.org/t/p/w500${src}`}
+          alt="image"
+        />
+        <CardImageAction
+          item={item}
+          onFavourite={onFavourite}
+          isFavourite={isFavourite}
+          onWatchLater={onWatchLater}
+          isWatchLater={isWatchLater}
+        />
+      </div>
+    )
+  return (
     <div
       className="w-full h-[250px] relative z-[10] group"
       data-testid="card-image"
@@ -48,3 +52,4 @@ export const CardImage: FC<ICardImage> = ({
       />
     </div>
   )
+}

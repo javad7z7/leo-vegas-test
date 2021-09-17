@@ -6,13 +6,15 @@ export const CardBody: FC<ICardBody> = ({
   title,
   description,
   isLoading,
-}): JSX.Element =>
-  isLoading ? (
-    <div
-      className="w-5/6 bg-white rounded h-[150px] -mt-20 shadow flex flex-col p-3 animate-pulse"
-      data-testid="card-body"
-    />
-  ) : (
+}): JSX.Element => {
+  if (isLoading)
+    return (
+      <div
+        className="w-5/6 bg-white rounded h-[150px] -mt-20 shadow flex flex-col p-3 animate-pulse"
+        data-testid="card-body"
+      />
+    )
+  return (
     <div
       className="w-5/6 bg-blue-100 rounded h-[150px] -mt-20 shadow flex flex-col p-3 z-[20]"
       data-testid="card-body"
@@ -21,3 +23,4 @@ export const CardBody: FC<ICardBody> = ({
       <CardText description={description} />
     </div>
   )
+}

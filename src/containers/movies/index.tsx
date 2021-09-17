@@ -5,7 +5,7 @@ import { MoviesPagination } from './pagination'
 import { MoviesToolbar } from './toolbar'
 import { useMovies } from './use-movies'
 
-export const MoviesContainer = memo(() => {
+export const MoviesContainer = () => {
   const {
     movies,
     page,
@@ -49,4 +49,4 @@ export const MoviesContainer = memo(() => {
       )}
     </MoviesLayout>
   )
-})
+}

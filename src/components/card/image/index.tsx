@@ -5,8 +5,10 @@ export const CardImage: FC<ICardImage> = ({
   src,
   isLoading,
   item,
-  action,
-  active,
+  onFavourite,
+  isFavourite,
+  onWatchLater,
+  isWatchLater,
 }): JSX.Element =>
   isLoading ? (
     <div
@@ -14,17 +16,35 @@ export const CardImage: FC<ICardImage> = ({
       data-testid="card-image"
     />
   ) : src ? (
-    <div className="w-full h-[250px] relative z-[10]" data-testid="card-image">
+    <div
+      className="w-full h-[250px] relative z-[10] group"
+      data-testid="card-image"
+    >
       <img
         className="w-full rounded h-[250px] object-cover object-top"
         src={`https://image.tmdb.org/t/p/w500${src}`}
         alt="image"
       />
-      <CardImageAction item={item} active={active} action={action} />
+      <CardImageAction
+        item={item}
+        onFavourite={onFavourite}
+        isFavourite={isFavourite}
+        onWatchLater={onWatchLater}
+        isWatchLater={isWatchLater}
+      />
     </div>
   ) : (
-    <div className="w-full h-[250px] relative z-[10] " data-testid="card-image">
+    <div
+      className="w-full h-[250px] relative z-[10] group"
+      data-testid="card-image"
+    >
       <div className="w-full rounded h-[250px] " />
-      <CardImageAction item={item} active={active} action={action} />
+      <CardImageAction
+        item={item}
+        onFavourite={onFavourite}
+        isFavourite={isFavourite}
+        onWatchLater={onWatchLater}
+        isWatchLater={isWatchLater}
+      />
     </div>
   )

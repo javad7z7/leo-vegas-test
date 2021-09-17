@@ -3,7 +3,14 @@ import { CardBody } from 'components/card/body'
 import { CardImage } from 'components/card/image'
 import { MoviesListWrapper } from './wrapper'
 
-export const MoviesList = ({ movies, isLoading, favourites, onFavourite }) =>
+export const MoviesList = ({
+  movies,
+  isLoading,
+  favourites,
+  onFavourite,
+  watchLater,
+  onWatchLater,
+}) =>
   isLoading && movies.length === 0 ? (
     <MoviesListWrapper id="movies-wrapper-loading">
       {Array.from({ length: 10 }).map((_, index) => (
@@ -20,8 +27,10 @@ export const MoviesList = ({ movies, isLoading, favourites, onFavourite }) =>
           <CardImage
             src={movie.poster_path}
             isLoading={isLoading}
-            action={onFavourite}
-            active={favourites.list.some((item) => item.id === movie.id)}
+            onFavourite={onFavourite}
+            onWatchLater={onWatchLater}
+            isFavourite={favourites.list.some((item) => item.id === movie.id)}
+            isWatchLater={watchLater.list.some((item) => item.id === movie.id)}
             item={movie}
           />
           <CardBody

@@ -2,8 +2,10 @@ interface ICardImage {
   title?: string
   description?: string
   isLoading?: boolean
-  action?: Function
+  onFavourite?: Function
+  onWatchLater?: Function
   item?: any
-  active?: boolean
+  isFavourite?: boolean
+  isWatchLater?: boolean
   src?: string | null
 }

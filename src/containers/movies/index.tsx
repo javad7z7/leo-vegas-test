@@ -17,6 +17,9 @@ export const MoviesContainer = memo(() => {
     favourites,
     onFavourite,
     toggleFavourite,
+    watchLater,
+    onWatchLater,
+    toggleWatchLater,
   } = useMovies()
 
   return (
@@ -26,14 +29,18 @@ export const MoviesContainer = memo(() => {
         onSearch={onSearch}
         toggleFavourite={toggleFavourite}
         favourites={favourites}
+        toggleWatchLater={toggleWatchLater}
+        watchLater={watchLater}
       />
       <MoviesList
         movies={movies}
         isLoading={isLoading}
         onFavourite={onFavourite}
         favourites={favourites}
+        onWatchLater={onWatchLater}
+        watchLater={watchLater}
       />
-      {!favourites.isOpen && (
+      {!favourites.isOpen && !watchLater.isOpen && (
         <MoviesPagination
           page={page}
           totalPage={totalPage}

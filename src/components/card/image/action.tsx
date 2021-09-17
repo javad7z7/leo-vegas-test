@@ -1,23 +1,39 @@
 import { Button } from 'components/button'
 import { ICStar } from 'icons/star'
 import { ICStarFill } from 'icons/star-fill'
+import { ICTime } from 'icons/time'
+import { ICTimeFill } from 'icons/time-fill'
 import { FC } from 'react'
 
 export const CardImageAction: FC<ICardImage> = ({
   item,
-  action,
-  active,
+  onFavourite,
+  isFavourite,
+  isWatchLater,
+  onWatchLater,
 }): JSX.Element => (
-  <Button
-    className="peer absolute top-2 right-2 "
-    onClick={() => action(item)}
-    icon
-    id="card-image-action"
-  >
-    {active ? (
-      <ICStarFill className="w-7 h-7 text-yellow-400" />
-    ) : (
-      <ICStar className="w-7 h-7 text-yellow-700" />
-    )}
-  </Button>
+  <div className=" flex-col space-y-3 absolute top-2 right-2 hidden group-hover:flex">
+    <Button
+      onClick={() => onFavourite(item)}
+      icon
+      id="card-image-action-favourite"
+    >
+      {isFavourite ? (
+        <ICStarFill className="w-6 h-6 text-yellow-400" />
+      ) : (
+        <ICStar className="w-6 h-6 text-yellow-500" />
+      )}
+    </Button>
+    <Button
+      onClick={() => onWatchLater(item)}
+      icon
+      id="card-image-action-watch"
+    >
+      {isWatchLater ? (
+        <ICTimeFill className="w-6 h-6 text-green-500" />
+      ) : (
+        <ICTime className="w-6 h-6 text-green-500" />
+      )}
+    </Button>
+  </div>
 )

@@ -23,7 +23,7 @@ export const Button: FC<IButton> = memo(
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         disabled={disabled || loading}
-        className={buttonClassName(icon, loading, disabled, className)}
+        className={buttonClassName(icon, loading, className)}
       >
         {loading ? <LoaidngBounce /> : children}
       </button>

@@ -23,7 +23,7 @@ export const MoviesContainer = () => {
   } = useMovies()
 
   return (
-    <MoviesLayout>
+    <MoviesLayout page={page}>
       <MoviesToolbar
         query={query}
         onSearch={onSearch}

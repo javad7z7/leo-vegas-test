@@ -10,8 +10,10 @@ describe('CardImage', () => {
   it('Should render action when is not loading', () => {
     render(<CardImage title="some title" description="some desc" />)
     const wrapper = screen.getByTestId('card-image')
-    const action = screen.getByTestId('card-image-action')
+    const favourite = screen.getByTestId('card-image-action-favourite')
+    const watch = screen.getByTestId('card-image-action-watch')
     expect(wrapper).not.toHaveClass('animate-pulse')
-    expect(action).toBeVisible()
+    expect(favourite).toBeVisible()
+    expect(watch).toBeVisible()
   })
 })

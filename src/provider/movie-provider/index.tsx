@@ -10,9 +10,7 @@ export const MovieProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    dispatch({
-      type: movieTypes.ON_LOAD,
-    })
+    dispatch({ type: movieTypes.ON_LOAD })
   }, [])
 
   useEffect(() => {
